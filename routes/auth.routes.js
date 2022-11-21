@@ -118,7 +118,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         return;
       }
 
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
+      // If user is found based on the email, check if the provided password matches the one saved in the database
       bcrypt
         .compare(password, user.password)
         .then((isSamePassword) => {
@@ -134,7 +134,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password;
 
-          res.redirect("/");
+          res.redirect("user/profile");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
