@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #eee !important;
+  color: black !important;
 }
 
 a {
@@ -33,4 +35,8 @@ h1 {
   border-top-right-radius: .3rem;
   border-bottom-right-radius: .3rem;
   }
+  }
+
+  #img-home{
+    margin-top: 5%;
   }
