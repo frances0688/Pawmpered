@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
-const PetSchema = new Schema({
+const petSchema = new Schema({
     name: String,
-    profilePicture: Image,
+    profilePicture: String,
     typeOfPet: {
         cat: String,
         dog: String,
@@ -15,6 +15,6 @@ const PetSchema = new Schema({
     breed: String,
 });
 
-const User = model("Pet", userSchema);
+const Pet = model("Pet", petSchema);
 
 module.exports = Pet;
