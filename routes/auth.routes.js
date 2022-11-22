@@ -15,6 +15,8 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+
+
 // GET /auth/signup
 router.get("/auth/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
@@ -41,19 +43,6 @@ router.post("/auth/signup", isLoggedOut, (req, res, next) => {
 
       return;
     }
-
-  //   ! This regular expression checks password for special characters and minimum length
-  /*
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
-    res
-      .status(400)
-      .render("auth/signup", {
-        errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
-    });
-    return;
-  }
-  */
 
   // Create a new user - start by checking if they already have an account and, if not, hash the password
   User.findOne({ email })
@@ -103,17 +92,15 @@ router.get("/auth/login", isLoggedOut, (req, res, next) => {
 // POST /auth/login
 router.post("/auth/login", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
-
   // Check that email and password are provided
   if ( email === "" || password === "") {
     res.status(400).render("auth/login", {
       errorMessage:
-        "All fields are mandatory. Please provide username, email and password.",
+        "All fields are mandatory. Please provide email and password.",
     });
 
     return;
   }
-
   // Here we use the same logic as above
   // - either length based parameters or we check the strength of a password
   if (password.length < 8) {
@@ -123,38 +110,34 @@ router.post("/auth/login", isLoggedOut, (req, res, next) => {
   }
 
   // Search the database for a user with the email submitted in the form
-  User.findOne({ email })
-    .then((user) => {
-      // If the user isn't found, send an error message that user provided wrong credentials
-      if (!user) {
-        res
+  User.findOne({email})
+      .then(userFromDB => {
+        console.log(userFromDB)
+        // If the user isn't found, send an error message that user provided wrong credentials
+        if (userFromDB === null) {
+          res
           .status(400)
-          .render("auth/login", { errorMessage: "Wrong credentials." });
-        return;
-      }
-
-      // If user is found based on the email, check if the provided password matches the one saved in the database
-      bcrypt
-        .compare(password, user.password)
-        .then((isSamePassword) => {
-          if (!isSamePassword) {
-            res
-              .status(400)
-              .render("auth/login", { errorMessage: "Wrong credentials." });
-            return;
-          }
-
+          .render("auth/login", { errorMessage: "User does not exist." })
+          return
+        }
+        if (bcrypt.compareSync(password, userFromDB.password)) {
           // Add the user object to the session object
-          req.session.currentUser = user.toObject();
+          req.session.currentUser = userFromDB;
           // Remove the password field
           delete req.session.currentUser.password;
 
           res.redirect("/user/:id");
-        })
-        .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
-    })
-    .catch((err) => next(err));
-});
+        } else {
+          // password is not correct
+          res
+            .status(400)
+            .render("auth/login", { errorMessage: "Wrong credentials." });
+            return;
+        }
+      })
+      .catch((err) => next(err));  
+    });
+
 
 // GET /auth/logout
 router.get("/auth/logout", isLoggedIn, (req, res, next) => {
