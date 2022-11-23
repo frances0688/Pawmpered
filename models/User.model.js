@@ -45,7 +45,7 @@ const userSchema = new Schema(
     },
     emergencyContact: {
       name: { type: String },
-      number: { type: String }
+      phone: { type: String }
     },
     pets: [{
       type: Schema.Types.ObjectId,
