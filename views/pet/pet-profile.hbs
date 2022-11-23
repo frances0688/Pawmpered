@@ -1,53 +1,184 @@
 {{!-- <input type="file" name="movie-cover-image" /> --}}
-<h2>Create a pet</h2>
-<div class="row">
-  <div class="col-md-6">
-    <form action="/pets/create" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label>Profile picture:
-          <input type="file" name="Profilepicture" class="form-control-file" />
-        </label>
+<h2>My pet</h2>
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        {{!-- <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4"> --}}
+        <nav class="bg-light rounded-3 p-3 mb-4">
+          <button type="button" class="btn btn-primary"><a href="/auth/logout">Log Out</a></button>
+          {{!-- <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol> --}}
+        </nav>
       </div>
- 
-      <div class="form-group">
-        <label>Name:
-          <input type="text" name="name" class="form-control" />
-        </label>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src={{pet.profilePicture}} alt="profile picture"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{pet.name}}</h5>
+            <p class="text-muted mb-1">{{pet.age.years}} years and {{pet.age.months}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
+            <p class="text-muted mb-4">{{pet.breed}}</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary"><a href="/me/edit">Edit Profile</a></button>
+              <button type="button" class="btn btn-outline-primary ms-1"><a href="/mypet/add">Add Pet</a></button>
+            </div>
+          </div>
+        </div>
       </div>
- 
-      <div class="form-group">
-        <label>Type of pet:
-          <textarea name="description" cols="30" rows="4" class="form-control"> </textarea>
-        </label>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Weight</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.weigth}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Microchipped</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.microchipped}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Spayed or Neutered</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.spayedOrNeutered}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">House trained</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.houseTrained}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Friendly with dogs</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.friendlyWithDogs}}</p>
+              </div>
+            </div>
+            <hr>         
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Friendly with cats</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.friendlyWithCats}}</p>
+              </div>
+            </div>
+            <hr> 
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Potty schedule</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.pottySchedule}}</p>
+              </div>
+            </div>
+            <hr> 
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Energy</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.energy}}</p>
+              </div>
+            </div> 
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Feeding schedule</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.feedingSchedule}}</p>
+              </div>
+            </div>                        
+            <hr> 
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Can be alone</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.canBeAlone}}</p>
+              </div>
+            </div> 
+            <hr>   
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Medication</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.medication}}</p>
+              </div>
+            </div> 
+            <hr>   
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Other care info</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.otherCareInfo}}</p>
+              </div>
+            </div> 
+            <hr>     
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Vet info</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.vetInfo}}</p>
+              </div>
+            </div> 
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Additional Vet info</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.additionalVetInfo}}</p>
+              </div>
+            </div> 
+            <hr>    
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Photo gallery</p>
+              </div>            
+            <div class="col-sm-9">
+                <p class="text-muted mb-0">{{pet.photo}}</p>           
+            </div>
+            </div> 
+            <hr>                                                                   
+            <div class="row">
+              <div class="col-sm-3">
+              <p class="mb-0">About</p>
+              </div>            
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{pet.about}}</p>
+        </div>
       </div>
- 
-      <div class="form-group">
-        <label>Weight:
-          <input type="text" name="weigth" class="form-control-file" />
-        </label>
-      </div>
- 
-       <div class="form-group">
-        <label>Age:
-          <input type="number" name="" class="form-control-file" />
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Birthdate:
-          <input type="date" name="" class="form-control-file" />
-        </label>
-      </div>
-            <div class="form-group">
-        <label>Gender:
-          <input type="text" name="" class="form-control-file" />
-        </label>
-      </div>
-            <div class="form-group">
-        <label>Breed:
-          <input type="text" name="" class="form-control-file" />
-        </label>
-      </div>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form>
+    </div>
   </div>
-</div>
+</section>
