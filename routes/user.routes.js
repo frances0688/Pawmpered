@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-// <!--Cloudinary-->
-// const User = require('../models/User.model');
- 
-// const fileUploader = require('../config/cloudinary.config');
+// <!--Cloudinary--> 
+const fileUploader = require('../config/cloudinary.config');
 
 const mongoose = require("mongoose");
 
