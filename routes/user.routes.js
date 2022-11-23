@@ -40,20 +40,32 @@ router.get("/me/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/me/edit", isLoggedIn, (req, res, next) => {
     const id = req.session.currentUser._id
-    const { name, lastName, phone, dob, address, emergencyContact } = req.body
+    const { name, lastName, profilePic, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
 
     const user = {
         name,
         lastName,
+        profilePic,
         phone,
         dob,
-        address,
-        emergencyContact 
+        address: {
+            street: addressStreet,
+            city: addressCity,
+            state: addressState,
+            zip: addressZip
+        },
+        emergencyContact: {
+            name: emergencyContactName,
+            phone: emergencyContactPhone
+        } 
     }
 
     User.findByIdAndUpdate(id, user)
     .then(createdUser => {
-        res.redirect(`/me`)
+        req.session.currentUser = createdUser;
+          // Remove the password field
+          delete req.session.currentUser.password;
+        res.redirect("/me")
     })
     .catch(err => {
         console.log(err)
