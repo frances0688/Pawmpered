@@ -11,11 +11,16 @@ const Pet = require("../models/Pet.model");
 
 const fileUploader = require('../config/cloudinary.config');
 
-router.get("/pet/add", (req, res, next) => {
-    res.render("pet-add")
+router.get("/mypet/add", (req, res, next) => {
+    const id = req.session.currentUser._id
+    User.findById(id)
+    .populate("pets")
+    .then(user => {
+    res.render("pet/add-pet",{user})
+    })
   })
   
-  router.post("/pet", fileUploader.single("pet-picture"), (req, res) => {
+  router.post("/mypet/add", fileUploader.single("pet-picture"), (req, res) => {
     
     const { name, profilePicture, typeOfPet, weight, age, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetInfo, additionalVetInfo, photo } = req.body
     const imgName = req.file.originalname
