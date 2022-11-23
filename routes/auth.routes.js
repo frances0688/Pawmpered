@@ -125,8 +125,7 @@ router.post("/auth/login", isLoggedOut, (req, res, next) => {
           req.session.currentUser = userFromDB;
           // Remove the password field
           delete req.session.currentUser.password;
-
-          res.redirect("/user/:id");
+          res.redirect("/me");
         } else {
           // password is not correct
           res
