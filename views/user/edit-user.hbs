@@ -16,6 +16,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
+            <form action="/movies/{{movie._id}}/edit" method="POST"></form>
             <img src={{user.profilePic}} alt="profile picture"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
