@@ -37,13 +37,15 @@ router.get("/me/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/me/edit", isLoggedIn, (req, res, next) => {
     const id = req.session.currentUser._id
-    const { name, lastName, phone, birthdate } = req.body
+    const { name, lastName, phone, dob, address, emergencyContact } = req.body
 
     const user = {
         name,
         lastName,
         phone,
-        birthdate 
+        dob,
+        address,
+        emergencyContact 
     }
 
     User.findByIdAndUpdate(id, user)
