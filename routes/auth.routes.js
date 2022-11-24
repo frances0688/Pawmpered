@@ -112,7 +112,6 @@ router.post("/auth/login", isLoggedOut, (req, res, next) => {
   // Search the database for a user with the email submitted in the form
   User.findOne({email})
       .then(userFromDB => {
-        console.log(userFromDB)
         // If the user isn't found, send an error message that user provided wrong credentials
         if (userFromDB === null) {
           res
@@ -125,7 +124,7 @@ router.post("/auth/login", isLoggedOut, (req, res, next) => {
           req.session.currentUser = userFromDB;
           // Remove the password field
           delete req.session.currentUser.password;
-          res.redirect("/user/:id");
+          res.redirect(`/user/${userFromDB._id}`);
         } else {
           // password is not correct
           res

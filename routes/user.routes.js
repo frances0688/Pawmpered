@@ -29,15 +29,16 @@ const isLoggedIn = require("../middleware/isLoggedIn")
 // Get user details
 router.get("/user/:id", isLoggedIn, (req, res, next) => {
     const id = req.params.id
-
+    
     User.findById(id)
+    .populate('pets')
     .then(user => {
         res.render("user/user-profile", { user })
     })
     .catch(err => {
         console.log(err)
     })
-    
+
 })
 
 // Edit user info
@@ -45,7 +46,9 @@ router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
     const id = req.params.id
 
     User.findById(id)
+    .populate ('address', 'emergencyContact', 'pets')
     .then(user => {
+        console.log(user)
         res.render("user/edit-user", { user })
     })
     .catch(err => {
@@ -63,20 +66,15 @@ router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
         profilePic,
         phone,
         dob,
-        address: {
-            street: addressStreet,
-            city: addressCity,
-            state: addressState,
-            zip: addressZip
-        },
-        emergencyContact: {
-            name: emergencyContactName,
-            phone: emergencyContactPhone
+        addressStreet,
+        addressCity,
+        addressState,
+        addressZip,    
+        emergencyContactName,
+        emergencyContactPhone
         } 
-    }
 
     User.findByIdAndUpdate(id, user)
-    // .populate('address', 'emergencyContact')
     .then(createdUser => {
         res.redirect(`/user/${id}`)
     })
