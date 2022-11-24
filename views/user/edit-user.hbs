@@ -16,7 +16,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={{user.profilePic}} alt="profile picture"class="rounded-circle img-fluid" style="width: 150px;">
+            <img src={{user.imgPath}} alt="profile picture"class="rounded-circle img-fluid" style="width: 150px;">
                 <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
             <form action="/user/{{user._id}}/edit" method="POST" enctype="multipart/form-data">
                 <label for="formFileSm" class="form-label">Update Profile Picture</label>
@@ -33,7 +33,7 @@
               </li>
                 {{#each user.pets}}
                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                        <img src={{pets.profilePicture}} alt="pet picture"class="rounded-circle img-fluid" style="width: 75px;">
+                        <img src={{pets.imgPath}} alt="pet picture"class="rounded-circle img-fluid" style="width: 75px;">
                         <h5 class="mb-0">{{pets.name}}</h5>
                         <div class="d-flex pt-1">
                             <button type="button" class="btn btn-primary flex-grow-1"><a href="">Edit</a></button>

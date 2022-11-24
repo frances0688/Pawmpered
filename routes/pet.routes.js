@@ -11,31 +11,67 @@ const Pet = require("../models/Pet.model");
 
 const fileUploader = require('../config/cloudinary.config');
 
-router.get("/mypet/add", (req, res, next) => {
-    const id = req.session.currentUser._id
+
+
+router.get("/user/:id/mypet/add", (req, res, next) => {
+    const id = req.params.id
+      
     User.findById(id)
-    .populate("pets")
+    .populate('pets')
     .then(user => {
-    res.render("pet/add-pet",{user})
+      res.render("pet/add-pet",{user})
     })
-  })
-  
-  router.post("/mypet/add", fileUploader.single("pet-picture"), (req, res) => {
+    .catch(err => {
+        console.log(err)
+    })
     
-    const { name, profilePicture, typeOfPet, weight, age, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetInfo, additionalVetInfo, photo } = req.body
-    const imgName = req.file.originalname
-    const imgPath = req.file.path
-    const publicId = req.file.filename
+})
   
-    Pet.create({ name, profilePicture, typeOfPet, weight, age, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetInfo, additionalVetInfo, photo})
-      .then(pet => {
-        console.log(pet)
-        res.redirect("/me")
-      })
-      .catch(err => {
-        next(err)
-      })
+router.post("/user/:id/mypet/add", fileUploader.single("pet-picture"), (req, res) => {
+  const ownerId = req.session.user._id
+  const imgPath = req.file.path
+  const {name, typeOfPet, weight, ageYears, ageMonths, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetName, vetNumber, vetStreet, vetCity, vetState, vetZip, additionalVetInfo, photo, owner} = req.body
+  
+
+  Pet.create({
+    name,
+    imgPath,
+    typeOfPet,
+    weight,
+    ageYears,
+    ageMonths,
+    gender,
+    breed,
+    microchipped,
+    spayedOrNeutered,
+    houseTrained,
+    friendlyWithDogs,
+    friendlyWithCats,
+    about,
+    pottySchedule,
+    energy,
+    feedingSchedule,
+    canBeAlone,
+    medication,
+    otherCareInfo,
+    vetName,
+    vetNumber,
+    vetStreet,
+    vetCity,
+    vetState,
+    vetZip,
+    additionalVetInfo,
+    photo,
+    owner: ownerId 
   })
+    .then(pet => {
+      console.log(pet)
+      res.redirect(`/user/${owner}/mypet/${pet._id}`)
+    })
+    .catch(err => {
+      next(err)
+    })
+})
   
   router.get("/pet/delete/:id", (req, res, next) => {
     Pet.findByIdAndDelete(req.params.id)

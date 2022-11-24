@@ -17,11 +17,11 @@
     </div>
 
     <div class="row">
+      <form action="/user/{{user._id}}/mypet/add" method="POST" enctype="multipart/form-data">
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={{pet.profilePicture}} alt="profile picture"
-              class="rounded-circle img-fluid" style="width: 150px;">
+            <img src={{pet.profilePicture}} alt="profile picture" class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{pet.name}}</h5>
             <p class="text-muted mb-1">{{pet.age.years}} years and {{pet.age.months}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
             <p class="text-muted mb-4">{{pet.breed}}</p>
@@ -34,7 +34,7 @@
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
-          <div class="card-body">
+          <form class="card-body">
             <div class="row">
               <div class="accordion" id="accordionExampleY">
                 <div class="accordion-item">
@@ -417,11 +417,16 @@
                           <input name="additionalVetInfo" type="text" aria-label="additionalVetInfo" class="form-control" />                          
                         </div>
                       </div>  
-                             
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
+                        </div>
+                      </div>   
                     </div> 
           </div>
         </div>
       </div>
     </div>
+    </form>
   </div>
 </section>

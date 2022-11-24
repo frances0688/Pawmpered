@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const petSchema = new Schema({
     name: String,
-    profilePicture: {
+    imgPath: {
         type:String,
         default:'https://www.petcloud.com.au/img/pet_placeholder.png',
     },
@@ -12,10 +12,8 @@ const petSchema = new Schema({
         enum: ['dog','cat', 'other'],
     },
     weight: Number,    
-    age: {
-        years: Number,
-        months: Number,
-    },
+    ageYears: Number,
+    ageMonths: Number,
     gender: {
         type: String,
         enum: ['male','female'],
@@ -48,17 +46,13 @@ const petSchema = new Schema({
     }, 
     medication: String,
     otherCareInfo: String,
-    vetInfo: {
-        vetName: String,
-        vetNumber: Number,
-        vetAddress: {
-            street: { type: String },
-            city: { type: String },
-            state: { type: String },
-            zip: { type: Number }
-          },
-        additionalVetInfo: String,
-    },
+    vetName: String,
+    vetNumber: Number,
+    vetStreet: String,
+    vetCity: String,
+    vetState: String,
+    vetZip: Number,
+    additionalVetInfo: String,
     photo: [String],
     active: {
         type: Boolean,

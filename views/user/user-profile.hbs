@@ -18,7 +18,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={{user.profilePic}} alt="profile picture"
+            <img src={{user.imgPath}} alt="profile picture"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
             {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
@@ -92,7 +92,7 @@
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{user.address.street}}, {{user.address.city}}, {{user.address.zip}} {{user.address.state}}</p>
+                <p class="text-muted mb-0">{{user.addressStreet}}, {{user.addressCity}}, {{user.addressZip}} {{user.addressState}}</p>
               </div>
             </div>
             <hr>
@@ -103,8 +103,8 @@
                 <p class="mb-0">Emergency Contact</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Name: {{user.emergencyContact.name}}</p>
-                <p class="text-muted mb-0">Phone Number: {{user.emergencyContact.phone}}</p>
+                <p class="text-muted mb-0">Name: {{user.emergencyContactName}}</p>
+                <p class="text-muted mb-0">Phone Number: {{user.emergencyContactPhone}}</p>
               </div>
             </div>
             <hr>
@@ -112,21 +112,23 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4">
-            <div class="card mb-4">
-              <div class="card-body text-center">
-                <img src={{user.profilePic}} alt="profile picture"
-                  class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
-                {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
-                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
-                <div class="d-flex justify-content-center mb-2">
-                  <button type="button" class="btn btn-primary">Edit Profile</button>
-                  <button type="button" class="btn btn-outline-primary ms-1">Add Pet</button>
+          {{#each pets}}
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src={{pet.imgPath}} alt="profile picture"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3">{{pet.name}}</h5>
+                  {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
+                  <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
+                  <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary">Edit Pet Profile</button>
+                    <button type="button" class="btn btn-outline-primary ms-1">Deactivate</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          {{/each}}
         </div>
       </div>
     </div>
