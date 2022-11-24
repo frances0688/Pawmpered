@@ -14,7 +14,7 @@ const User = require("../models/User.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
-
+const {uploader, cloudinary} = require('../config/cloudinary');
 
 
 // GET /auth/signup
@@ -86,7 +86,6 @@ router.post("/auth/signup", isLoggedOut, (req, res, next) => {
             })
             
             .then((createdUser) => {
-              console.log(createdUser)
               res.redirect("/auth/login");
             })
             .catch((error) => {
