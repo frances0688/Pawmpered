@@ -13,22 +13,38 @@ const Pet = require("../models/Pet.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 
 // const isLoggedIn = require("../middleware/isLoggedIn")
-const isAdmin = require("../middleware/isLoggedIn")
+const isAdmin = require("../middleware/isAdmin")
 
 // Get list of users
-router.get("/users", isAdmin, (req, res, next) => {
-    User.find()
-    .then(users => {
-        res.render("user/user-list", { users })
+router.get("/user/:id/dashboard", isAdmin, (req, res, next) => {
 
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    const users = User.find().populate("pets")
+    const pets = Pet.find()
+
+    res.render("user/user-list", { users, pets })
+    
+})
+
+// Delete user
+router.get('/user/:id/delete', isAdmin, (req, res, next) => {
+
+	const userId = req.params.id
+	const query = { _id: userId }
+
+	if (req.session.currentUser.role === 'admin') {
+		query.owner = req.session.currentUser._id
+	}
+	console.log(query)
+	User.findOneAndDelete(query)
+		.then(() => {
+			res.redirect(`/user/${userId}/dashboard`)
+		})
+		.catch(err => {
+			next(err)
+		})
 });
 
 // Get user details
-
 router.get("/user/:id",(req, res, next) => {
     const id = req.params.id
     

@@ -3,6 +3,6 @@ module.exports = (req, res, next) => {
     if (req.session.currentUser.role === "admin") {
         next();
     }
-    return res.redirect("user/:id");
+    return res.redirect("/user/:id");
 
   };

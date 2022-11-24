@@ -94,7 +94,9 @@ router.post("/user/:id/mypet/add", uploader.single("pet-picture"), (req, res) =>
     })
       .then((pet) => {
         console.log(pet);
+
         res.redirect(`/user/${pet}/mypet/${pet._id}`);
+
       })
       .catch((err) => {
         console.log(err);
