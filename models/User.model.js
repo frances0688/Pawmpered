@@ -37,16 +37,12 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    address: {
-      street: { type: String },
-      city: { type: String },
-      state: { type: String },
-      zip: { type: Number }
-    },
-    emergencyContact: {
-      name: { type: String },
-      phone: { type: String }
-    },
+    addressStreet: String,
+    addressCity: String, 
+    addressState: String,
+    addressZip: Number,
+    emergencyContactName: String ,
+    emergencyContactPhone: String,
     pets: [{
       type: Schema.Types.ObjectId,
       ref: 'Pet'

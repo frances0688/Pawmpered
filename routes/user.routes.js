@@ -27,19 +27,37 @@ const isLoggedIn = require("../middleware/isLoggedIn")
 
 
 // Get user details
-router.get("/me", isLoggedIn, (req, res, next) => {
-    const loggedInUser = req.session.currentUser
-    res.render("user/user-profile", { user: loggedInUser })
+router.get("/user/:id", isLoggedIn, (req, res, next) => {
+    const id = req.params.id
+    
+    User.findById(id)
+    .populate('pets')
+    .then(user => {
+        res.render("user/user-profile", { user })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
 })
 
 // Edit user info
-router.get("/me/edit", isLoggedIn, (req, res, next) => {
-    const loggedInUser = req.session.currentUser
-    res.render("user/edit-user", { user: loggedInUser })
+router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
+    const id = req.params.id
+
+    User.findById(id)
+    .populate ('address', 'emergencyContact', 'pets')
+    .then(user => {
+        console.log(user)
+        res.render("user/edit-user", { user })
+    })
+    .catch(err => {
+        console.log(err)
+    })
 })
 
-router.post("/me/edit", isLoggedIn, (req, res, next) => {
-    const id = req.session.currentUser._id
+router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
+    const id = req.params.id
     const { name, lastName, profilePic, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
 
     const user = {
@@ -48,24 +66,17 @@ router.post("/me/edit", isLoggedIn, (req, res, next) => {
         profilePic,
         phone,
         dob,
-        address: {
-            street: addressStreet,
-            city: addressCity,
-            state: addressState,
-            zip: addressZip
-        },
-        emergencyContact: {
-            name: emergencyContactName,
-            phone: emergencyContactPhone
+        addressStreet,
+        addressCity,
+        addressState,
+        addressZip,    
+        emergencyContactName,
+        emergencyContactPhone
         } 
-    }
 
     User.findByIdAndUpdate(id, user)
     .then(createdUser => {
-        req.session.currentUser = createdUser;
-          // Remove the password field
-          delete req.session.currentUser.password;
-        res.redirect("/me")
+        res.redirect(`/user/${id}`)
     })
     .catch(err => {
         console.log(err)
