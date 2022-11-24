@@ -58,6 +58,7 @@ const petSchema = new Schema({
         type: Boolean,
         default: true,
     },
+    owner: String
 });
 
 const Pet = model("Pet", petSchema);
