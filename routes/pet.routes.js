@@ -95,7 +95,7 @@ router.post(
     })
       .then((pet) => {
         console.log(pet);
-        res.redirect(`/user/${owner}/mypet/${pet._id}`);
+        res.redirect(`/user/${pet.owner}/mypet/${pet._id}`);
       })
       .catch((err) => {
         next(err);
