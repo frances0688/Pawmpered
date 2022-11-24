@@ -12,18 +12,18 @@ const Pet = require("../models/Pet.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedIn = require("../middleware/isLoggedIn")
-// const isAdmin = require("../middleware/isLoggedIn")
+const isAdmin = require("../middleware/isLoggedIn")
 
 // Get list of users
-// router.get("/users", isLoggedIn, isAdmin, (req, res, next) => {
-//     User.find()
-//     .then(user => {
-//         res.render("user/user-list", { user })
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-// })
+router.get("/users", isLoggedIn, isAdmin, (req, res, next) => {
+    User.find()
+    .then(user => {
+        res.render("user/user-list", { user })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 
 
 // Get user details
@@ -58,12 +58,12 @@ router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
     const id = req.params.id
-    const { name, lastName, profilePic, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
+    const { name, lastName, imgPath, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
 
     const user = {
         name,
         lastName,
-        profilePic,
+        imgPath,
         phone,
         dob,
         addressStreet,
