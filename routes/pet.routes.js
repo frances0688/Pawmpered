@@ -9,7 +9,7 @@ const Pet = require("../models/Pet.model");
 
 // file uploader - single() pet
 
-const fileUploader = require('../config/cloudinary.config');
+const {uploader, cloudinary} = require('../config/cloudinary');
 
 
 
@@ -27,7 +27,7 @@ router.get("/user/:id/mypet/add", (req, res, next) => {
     
 })
   
-router.post("/user/:id/mypet/add", fileUploader.single("pet-picture"), (req, res) => {
+router.post("/user/:id/mypet/add", uploader.single("pet-picture"), (req, res) => {
   const ownerId = req.session.user._id
   const imgPath = req.file.path
   const {name, typeOfPet, weight, ageYears, ageMonths, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetName, vetNumber, vetStreet, vetCity, vetState, vetZip, additionalVetInfo, photo, owner} = req.body
@@ -86,7 +86,6 @@ router.post("/user/:id/mypet/add", fileUploader.single("pet-picture"), (req, res
         next(err)
       })
   })
-
 
 
 

@@ -18,6 +18,6 @@ const storage = new CloudinaryStorage({
     folder: 'pet-picture' 
   }
 });
-
+const uploader = multer({storage})
 //                     storage: storage
-module.exports = multer({ storage });
+module.exports = { uploader, cloudinary };

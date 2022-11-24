@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // <!--Cloudinary--> 
-const fileUploader = require('../config/cloudinary.config');
+const fileUploader = require('../config/cloudinary');
 
 const mongoose = require("mongoose");
 
