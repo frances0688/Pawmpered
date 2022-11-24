@@ -28,7 +28,7 @@ router.get("/user/:id/mypet/add", (req, res, next) => {
 })
   
 router.post("/user/:id/mypet/add", fileUploader.single("pet-picture"), (req, res) => {
-  const ownerId = req.session.user._id
+  const ownerId = req.session.currentUser.id
   const imgPath = req.file.path
   const {name, typeOfPet, weight, ageYears, ageMonths, gender, breed, microchipped, spayedOrNeutered, houseTrained, friendlyWithDogs, friendlyWithCats, about, pottySchedule, energy, feedingSchedule, canBeAlone, medication, otherCareInfo, vetName, vetNumber, vetStreet, vetCity, vetState, vetZip, additionalVetInfo, photo, owner} = req.body
   
@@ -73,7 +73,8 @@ router.post("/user/:id/mypet/add", fileUploader.single("pet-picture"), (req, res
     })
 })
   
-  router.get("/pet/delete/:id", (req, res, next) => {
+  router.get("/user/:id/mypet/:id", (req, res, next) => {
+    console.log(req.params.id)
     Pet.findByIdAndDelete(req.params.id)
       .then(deletedPet => {
         if (deletedPet.imgPath) {

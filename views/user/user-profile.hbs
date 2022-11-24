@@ -4,7 +4,7 @@
       <div class="col">
         {{!-- <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4"> --}}
         <nav class="bg-light rounded-3 p-3 mb-4">
-          <button type="button" class="btn btn-primary"><a href="/auth/logout">Log Out</a></button>
+          <button type="button" class="btn-outline-primary ms-1"><a href="/auth/logout">Log Out</a></button>
           {{!-- <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="#">User</a></li>
@@ -24,12 +24,12 @@
             {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary"><a href="/user/{{user._id}}/edit">Edit Profile</a></button>
-              <button type="button" class="btn btn-outline-primary ms-1"><a href="/mypet/add">Add Pet</a></button>
+              <button type="button" class="btn btn-outline-primary ms-1"><a href="/user/{{user._id}}/edit">Edit Profile</a></button>
+              <button type="button" class="btn btn-outline-primary ms-1"><a href="/user/{{user._id}}/mypet/add">Add Pet</a></button>
             </div>
           </div>
         </div>
-        <div class="card mb-4 mb-lg-0">
+        {{!-- <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -54,7 +54,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
