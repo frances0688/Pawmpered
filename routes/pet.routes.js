@@ -31,6 +31,7 @@ router.post(
     const ownerId = req.session.currentUser.id;
 
     const imgPath = req.file.path;
+    console.log(imgPath);
     const {
       name,
       typeOfPet,
@@ -61,6 +62,7 @@ router.post(
       photo,
       owner,
     } = req.body;
+    console.log('owner:', owner);
 
     Pet.create({
       name,
@@ -91,13 +93,14 @@ router.post(
       vetZip,
       additionalVetInfo,
       photo,
-      owner: ownerId,
+      owner,
     })
       .then((pet) => {
         console.log(pet);
         res.redirect(`/user/${owner}/mypet/${pet._id}`);
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }
