@@ -17,8 +17,8 @@ const isAdmin = require("../middleware/isLoggedIn")
 // Get list of users
 router.get("/users", isLoggedIn, isAdmin, (req, res, next) => {
     User.find()
-    .then(user => {
-        res.render("user/user-list", { user })
+    .then(users => {
+        res.render("user/user-list", { users })
     })
     .catch(err => {
         console.log(err)
@@ -46,7 +46,7 @@ router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
     const id = req.params.id
 
     User.findById(id)
-    .populate ('address', 'emergencyContact', 'pets')
+    .populate ('pets')
     .then(user => {
         console.log(user)
         res.render("user/edit-user", { user })
@@ -76,6 +76,7 @@ router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
 
     User.findByIdAndUpdate(id, user)
     .then(createdUser => {
+        console.log("createdUser:", createdUser)
         res.redirect(`/user/${id}`)
     })
     .catch(err => {

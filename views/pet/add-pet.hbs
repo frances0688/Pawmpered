@@ -84,7 +84,8 @@
                           <p class="mb-0">Age</p>
                         </div>
                         <div class="col-sm-9">
-                          <input value="age" name="age" type="number" aria-label="age" class="form-control" />                          
+                          <input name="ageYears" type="number" aria-label="age" class="form-control" placeholder="Years"/> 
+                          <input name="ageMonths" type="number" aria-label="age" class="form-control" placeholder="Months"/>                         
                         </div>
                       </div> 
                       <hr>
@@ -254,18 +255,18 @@
                             </div>   
 
                             <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio2" value="every 4 hours" />
-                            <label class="form-check-label" for="inlineRadio2">every 4 hours</label>
+                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio3" value="every 4 hours" />
+                            <label class="form-check-label" for="inlineRadio3">every 4 hours</label>
                             </div>    
 
                             <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio2" value="every 8 hours" />
-                            <label class="form-check-label" for="inlineRadio2">every 8 hours</label>
+                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio4" value="every 8 hours" />
+                            <label class="form-check-label" for="inlineRadio4">every 8 hours</label>
                             </div> 
 
                             <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio2" value="custom" />
-                            <label class="form-check-label" for="inlineRadio2">custom</label>
+                            <input class="form-check-input" type="radio" name="pottyschedule" id="inlineRadio5" value="custom" />
+                            <label class="form-check-label" for="inlineRadio5">custom</label>
                             </div>                                                 
                         </div>
                       </div>
@@ -408,22 +409,24 @@
                           <input name="zip" type="text" aria-label="zip" class="form-control" />                          
                         </div>
                       </div>
-                       <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Additional Vet Info</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="additionalVetInfo" type="text" aria-label="additionalVetInfo" class="form-control" />                          
-                        </div>
-                      </div>  
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
-                        </div>
-                      </div>   
+                      <hr>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <p class="mb-0">Additional Vet Info</p>
+                          </div>
+                          <div class="col-sm-9">
+                            <input name="additionalVetInfo" type="text" aria-label="additionalVetInfo" class="form-control" />                          
+                          </div>
+                        </div>  
+                      <hr>
                     </div> 
-          </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-9 text-center">
+                        <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
+                      </div>
+                    </div>  
+                    <br> 
         </div>
       </div>
     </div>
