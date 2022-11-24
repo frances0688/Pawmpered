@@ -23,11 +23,15 @@
           <div class="card-body text-center">
             <img src={{pet.profilePicture}} alt="profile picture" class="rounded-circle img-fluid" id="upload_widget"style="width: 150px;">
             <h5 class="my-3">{{pet.name}}</h5>
-            <p class="text-muted mb-1">{{pet.age.years}} years and {{pet.age.months}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
-            <p class="text-muted mb-4">{{pet.breed}}</p>
+            {{#if pet.ageYears}}
+               <p class="text-muted mb-1">{{pet.ageYears}} years and {{pet.ageMonths}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
+            {{/if}}
+            {{#if pet.breed}}
+               <p class="text-muted mb-4">{{pet.breed}}</p>
+            {{/if}}
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary"><a href="/me/edit">Edit Profile</a></button>
-              <button type="button" class="btn btn-outline-primary ms-1"><a href="/mypet/add">Add Pet</a></button>
+              <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
+              <button type="button" class="btn btn-outline-primary ms-1"><a href="/user/{{user._id}}">Cancel</a></button>
             </div>
           </div>
         </div>

@@ -86,7 +86,7 @@
               </div>
             </div>
             <hr>
-            {{#if user.address}}
+            {{#if user.addressStreet}}
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Address</p>
@@ -97,7 +97,7 @@
             </div>
             <hr>
             {{/if}}
-            {{#if user.emergencyContact}}
+            {{#if user.emergencyContactName}}
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Emergency Contact</p>
@@ -112,13 +112,13 @@
           </div>
         </div>
         <div class="row">
-          {{#each pets}}
+          {{#each user.pets}}
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
-                  <img src={{pet.imgPath}} alt="profile picture"
+                  <img src={{user.pets.imgPath}} alt="profile picture"
                     class="rounded-circle img-fluid" style="width: 150px;">
-                  <h5 class="my-3">{{pet.name}}</h5>
+                  <h5 class="my-3">{{user.pets.name}}</h5>
                   {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
                   <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
                   <div class="d-flex justify-content-center mb-2">

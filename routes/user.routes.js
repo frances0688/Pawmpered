@@ -11,11 +11,11 @@ const User = require("../models/User.model");
 const Pet = require("../models/Pet.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
-const isLoggedIn = require("../middleware/isLoggedIn")
+// const isLoggedIn = require("../middleware/isLoggedIn")
 const isAdmin = require("../middleware/isLoggedIn")
 
 // Get list of users
-router.get("/users", isLoggedIn, isAdmin, (req, res, next) => {
+router.get("/users", isAdmin, (req, res, next) => {
     User.find()
     .then(users => {
         res.render("user/user-list", { users })
@@ -27,7 +27,7 @@ router.get("/users", isLoggedIn, isAdmin, (req, res, next) => {
 
 
 // Get user details
-router.get("/user/:id", isLoggedIn, (req, res, next) => {
+router.get("/user/:id",(req, res, next) => {
     const id = req.params.id
     
     User.findById(id)
@@ -42,7 +42,7 @@ router.get("/user/:id", isLoggedIn, (req, res, next) => {
 })
 
 // Edit user info
-router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
+router.get("/user/:id/edit", (req, res, next) => {
     const id = req.params.id
 
     User.findById(id)
@@ -56,10 +56,10 @@ router.get("/user/:id/edit", isLoggedIn, (req, res, next) => {
     })
 })
 
-router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/user/:id/edit", (req, res, next) => {
     const id = req.params.id
     const { name, lastName, imgPath, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
-
+    console.log("req.body:", req.body)
     const user = {
         name,
         lastName,
@@ -73,8 +73,8 @@ router.post("/user/:id/edit", isLoggedIn, (req, res, next) => {
         emergencyContactName,
         emergencyContactPhone
         } 
-
-    User.findByIdAndUpdate(id, user)
+        console.log("user:", user)
+    User.findByIdAndUpdate(id, user, {new:true})
     .then(createdUser => {
         console.log("createdUser:", createdUser)
         res.redirect(`/user/${id}`)
