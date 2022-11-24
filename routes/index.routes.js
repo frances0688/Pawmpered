@@ -1,8 +1,8 @@
 const express = require('express');
-const { single } = require('../config/cloudinary.config');
+const { single } = require('../config/cloudinary');
 const router = express.Router();
 
-const fileUploader = require("../config/cloudinary.config");
+const fileUploader = require("../config/cloudinary");
 
 
 /* GET home page */
