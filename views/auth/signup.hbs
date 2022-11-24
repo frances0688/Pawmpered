@@ -26,8 +26,8 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input name="dob" type="date" id="form2Example11" class="form-control" placeholder="Birthdate" />
-                        <label class="form-label" for="form2Example11">Birthdate</label>
+                        <input name="dob" type="date" id="form2Example11" class="form-control" placeholder="Date of Birth" />
+                        <label class="form-label" for="form2Example11">Date of Birth</label>
                     </div>
 
                     <div class="form-outline mb-4">
@@ -54,9 +54,8 @@
                         <p class="mb-0 me-2">Already have an account?</p>
                         <button type="button" class="btn btn-outline-secondary"><a class="link-dark" href="/auth/login">Log in</a></button>
                     </div>
-
-                    {{#if errorMessage}}
-                      <div class="alert alert-warning" role="alert">
+                        {{#if errorMessage}}
+                          <div class="alert alert-warning" role="alert">
                         {{errorMessage}}
                       </div>
                     {{/if}}  

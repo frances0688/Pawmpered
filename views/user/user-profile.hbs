@@ -24,7 +24,7 @@
             {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary"><a href="/me/edit">Edit Profile</a></button>
+              <button type="button" class="btn btn-primary"><a href="/user/{{user._id}}/edit">Edit Profile</a></button>
               <button type="button" class="btn btn-outline-primary ms-1">Add Pet</button>
             </div>
           </div>
@@ -86,14 +86,29 @@
               </div>
             </div>
             <hr>
+            {{#if user.address}}
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p class="text-muted mb-0">{{user.address.street}}, {{user.address.city}}, {{user.address.zip}} {{user.address.state}}</p>
               </div>
             </div>
+            <hr>
+            {{/if}}
+            {{#if user.emergencyContact}}
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Emergency Contact</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Name: {{user.emergencyContact.name}}</p>
+                <p class="text-muted mb-0">Phone Number: {{user.emergencyContact.phone}}</p>
+              </div>
+            </div>
+            <hr>
+            {{/if}}
           </div>
         </div>
         <div class="row">
