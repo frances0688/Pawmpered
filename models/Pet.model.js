@@ -58,7 +58,10 @@ const petSchema = new Schema({
         type: Boolean,
         default: true,
     },
-    owner: String
+    owner: {
+        type: String,
+        required: true
+    }
 });
 
 const Pet = model("Pet", petSchema);

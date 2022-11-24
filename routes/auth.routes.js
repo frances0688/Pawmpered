@@ -24,7 +24,21 @@ router.get("/auth/signup", isLoggedOut, (req, res, next) => {
 
 // POST /auth/signup
 router.post("/auth/signup", isLoggedOut, (req, res, next) => {
-  const { email, password, name, lastName, phone, dob } = req.body;
+  const { 
+    email, 
+    password, 
+    name, 
+    lastName, 
+    phone, 
+    dob,
+    imgPath,
+    addressStreet,
+    addressCity,
+    addressState,
+    addressZip,    
+    emergencyContactName,
+    emergencyContactPhone 
+  } = req.body;
 
     // Check that all fields are provided
     if (email === "" || password === "" || name === "" || lastName === "" || phone === "" || dob === "") {
@@ -62,6 +76,13 @@ router.post("/auth/signup", isLoggedOut, (req, res, next) => {
               lastName: lastName,
               phone: phone,
               dob: dob,
+              imgPath,
+              addressStreet,
+              addressCity,
+              addressState,
+              addressZip,    
+              emergencyContactName,
+              emergencyContactPhone
             })
             
             .then((createdUser) => {
@@ -124,7 +145,7 @@ router.post("/auth/login", isLoggedOut, (req, res, next) => {
           req.session.currentUser = userFromDB;
           // Remove the password field
           delete req.session.currentUser.password;
-          res.redirect(`/user/${userFromDB._id}`);
+          res.redirect(`/user/${userFromDB._id}`)
         } else {
           // password is not correct
           res
