@@ -24,14 +24,12 @@ router.get("/user/:id/mypet/add", (req, res, next) => {
     });
 });
 
-router.post(
-  "/user/:id/mypet/add",
-  uploader.single("pet-picture"),
-  (req, res) => {
+router.post("/user/:id/mypet/add", uploader.single("pet-picture"), (req, res) => {
     const ownerId = req.session.currentUser.id;
 
     const imgPath = req.file.path;
-    const {
+    console.log(imgPath);
+    const pet = {
       name,
       typeOfPet,
       weight,
@@ -61,6 +59,7 @@ router.post(
       photo,
       owner,
     } = req.body;
+    console.log('pet:', pet);
 
     Pet.create({
       name,
@@ -91,13 +90,16 @@ router.post(
       vetZip,
       additionalVetInfo,
       photo,
-      owner: ownerId,
+      owner,
     })
       .then((pet) => {
         console.log(pet);
-        res.redirect(`/user/${pet.owner}/mypet/${pet._id}`);
+
+        res.redirect(`/user/${pet}/mypet/${pet._id}`);
+
       })
       .catch((err) => {
+        console.log(err);
         next(err);
       });
   }

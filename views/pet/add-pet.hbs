@@ -1,5 +1,5 @@
 {{!-- <input type="file" name="movie-cover-image" /> --}}
-<h2>Create a pet</h2> 
+<h2>Create a pet</h2>
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
@@ -17,414 +17,426 @@
 
     <div class="row">
       <form action="/user/{{user._id}}/mypet/add" method="POST" enctype="multipart/form-data">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src='https://www.petcloud.com.au/img/pet_placeholder.png' alt="profile picture" class="rounded-circle img-fluid" id="upload_widget"style="width: 150px;">
-            <h5 class="my-3">{{pet.name}}</h5>
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                  <img src='https://www.petcloud.com.au/img/pet_placeholder.png' alt="profile picture" class="rounded-circle img-fluid" id="upload_widget" style="width: 150px;">
 
-            {{#if pet.ageYears}}
-               <p class="text-muted mb-1">{{pet.ageYears}} years and {{pet.ageMonths}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
-            {{/if}}
-            {{#if pet.breed}}
-               <p class="text-muted mb-4">{{pet.breed}}</p>
-            {{/if}}
-            <div class="d-flex justify-content-center mb-2">
-              <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
-              <button type="button" class="btn btn-outline-primary ms-1"><a href="/user/{{user._id}}">Cancel</a></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <form class="card-body">
-            <div class="row">
-              <div class="accordion" id="accordionExampleY">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOneY">
-                    <button class="accordion-button" type="button" data-mdb-toggle="collapse"
-                      data-mdb-target="#collapseOneY" aria-expanded="true" aria-controls="collapseOneY">
-                      <i class="fas fa-dog fa-sm me-2 opacity-70"></i>Basic Information
-                    </button>
-                  </h2>
-                  <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
-                    data-mdb-parent="#accordionExampleY">
-                    <div class="accordion-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Name</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="name" type="text" aria-label="Pet name" class="form-control" />                          
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                         <p class="mb-0">Type of pet</p>
-                        </div>
-                         <div class="col-sm-9">
-                           <input type="radio" class="btn-check" name="typeOfpet" value="cat" id="option1" autocomplete="off" checked />
-                           <label class="btn btn-secondary" for="option1">Cat</label>
-                           <input type="radio" class="btn-check" name="typeOfpet" value="dog" id="option2" autocomplete="off" />
-                           <label class="btn btn-secondary" for="option2">Dog</label>
-                           <input type="radio" class="btn-check" name="typeOfpet" value="other" id="option3" autocomplete="off" />
-                           <label class="btn btn-secondary" for="option3">Other</label>
-                         </div>                      
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Weight</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="weight" type="number" aria-label="weight" class="form-control" />                          
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Age</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="ageYears" type="number" aria-label="age" class="form-control" placeholder="Years"/> 
-                          <input name="ageMonths" type="number" aria-label="age" class="form-control" placeholder="Months"/>                         
-                        </div>
-                      </div> 
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Gender</p>
-                        </div>
-                        <div class="col-sm-9">
-                           <input type="radio" class="btn-check" name="gender" value="female" id="female" autocomplete="off" checked />
-                           <label class="btn btn-secondary" for="female">Female</label>
-                           <input type="radio" class="btn-check" name="gender" value="male" id="male" autocomplete="off" />
-                           <label class="btn btn-secondary" for="male">Male</label>                         
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Breed</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="breed" type="text" aria-label="breed" class="form-control" />                          
-                        </div>
-                      </div>                                            
-                    </div>
-                  </div>
+                <input type="file" name="pet-picture">
+
+                <h5 class="my-3">{{pet.name}}</h5>
+                {{#if pet.ageYears}}
+                   <p class="text-muted mb-1">{{pet.ageYears}} years and {{pet.ageMonths}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
+                {{/if}}
+                {{#if pet.breed}}
+                   <p class="text-muted mb-4">{{pet.breed}}</p>
+                {{/if}}
+                <div class="d-flex justify-content-center mb-2">
+                  <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
+                  <button type="button" class="btn btn-outline-primary ms-1"><a href="/user/{{user._id}}">Cancel</a></button>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwoY">
-                    <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                      data-mdb-target="#collapseTwoY" aria-expanded="false" aria-controls="collapseTwoY">
-                      <i class="fas fa-cat fa-sm me-2 opacity-70"></i>Additional Information 
-                    </button>
-                  </h2>
-                  <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
-                    data-mdb-parent="#accordionExampleY">
-                    <div class="accordion-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Microchipped</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="microchipped" id="microchipped1" value="false" />
-                            <label class="form-check-label" for="microchipped1">no</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="microchipped" id="microchipped2" value="true" />
-                            <label class="form-check-label" for="microchipped2">yes</label>
-                            </div>                      
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">Spayed or neutered</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="spayedOrNeutered" id="spayedOrNeutered1" value="false" />
-                            <label class="form-check-label" for="spayedOrNeutered1">no</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="spayedOrNeutered" id="spayedOrNeutered2" value="true" />
-                            <label class="form-check-label" for="spayedOrNeutered2">yes</label>
-                            </div>                      
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">House trained</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained1" value="no" />
-                            <label class="form-check-label" for="houseTrained1">no</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained2" value="yes" />
-                            <label class="form-check-label" for="houseTrained2">yes</label>
-                            </div>     
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained3" value="unsure" />
-                            <label class="form-check-label" for="houseTrained3">unsure</label>
-                            </div>
-
-                             <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained4" value="depends" />
-                            <label class="form-check-label" for="houseTrained4">depends</label>
-                          </div>           
-                        </div>
-                      </div> 
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">Friendly with dogs</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="friendlyWithDogs" id="friendlyWithDogs1" value="false" />
-                            <label class="form-check-label" for="friendlyWithDogs1">no</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="friendlyWithDogs" id="friendlyWithDogs2" value="true" />
-                            <label class="form-check-label" for="friendlyWithDogs2">yes</label>
-                            </div>                      
-                        </div>
-                      </div> 
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">Friendly with cats</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="friendlyWithCats" id="friendlyWithCats1" value="false" />
-                            <label class="form-check-label" for="friendlyWithCats1">no</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="friendlyWithCats" id="friendlyWithCats2" value="true" />
-                            <label class="form-check-label" for="friendlyWithCats2">yes</label>
-                            </div>                      
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">Tell us about your pet</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                           <input name="name" type="text" aria-label="Pet name" class="form-control" />                          
-                          </div>                      
-                        </div>
-                      </div>                                                                
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThreeY">
-                    <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                      data-mdb-target="#collapseThreeY" aria-expanded="false" aria-controls="collapseThreeY">
-                      <i class="fas fa-paw fa-sm me-2 opacity-70"></i>Care information
-                    </button>
-                  </h2>
-                  <div id="collapseThreeY" class="accordion-collapse collapse" aria-labelledby="headingThreeY" data-mdb-parent="#accordionExampleY">
-                    <div class="accordion-body">
-                      <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Potty Schedule</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule1" value="every hour" />
-                            <label class="form-check-label" for="pottyschedule1">every hour</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule2" value="every 2 hours" />
-                            <label class="form-check-label" for="pottyschedule2">every 2 hours</label>
-                            </div>   
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule3" value="every 4 hours" />
-                            <label class="form-check-label" for="pottyschedule3">every 4 hours</label>
-                            </div>    
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule4" value="every 8 hours" />
-                            <label class="form-check-label" for="pottyschedule4">every 8 hours</label>
-                            </div> 
-
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule5" value="custom" />
-                            <label class="form-check-label" for="pottyschedule5">custom</label>
-                            </div>                                                 
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Energy level</p>
-                        </div>
-                        <div class="col-sm-9">
-                           <input type="radio" class="btn-check" name="energy" value="high" id="energy1" autocomplete="off" checked />
-                           <label class="btn btn-secondary" for="energy1">high</label>
-                           <input type="radio" class="btn-check" name="energy" value="moderate" id="energy2" autocomplete="off" />
-                           <label class="btn btn-secondary" for="energy2">moderate</label>   
-                           <input type="radio" class="btn-check" name="energy" value="low" id="energy3" autocomplete="off" />
-                           <label class="btn btn-secondary" for="energy3">low</label>                                                   
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Feeding schedule</p>
-                        </div>
-                        <div class="col-sm-9">
-                           <input type="radio" class="btn-check" name="feedingSchedule" value="morning" id="feedingSchedule1" autocomplete="off" checked />
-                           <label class="btn btn-secondary" for="feedingSchedule1">morning</label>
-                           <input type="radio" class="btn-check" name="feedingSchedule" value="twice a day" id="feedingSchedule2" autocomplete="off" />
-                           <label class="btn btn-secondary" for="feedingSchedule2">twice a day</label>   
-                           <input type="radio" class="btn-check" name="feedingSchedule" value="custom" id="feedingSchedule3" autocomplete="off" />
-                           <label class="btn btn-secondary" for="feedingSchedule3">custom</label>                                                   
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Can be left alone?</p>
-                        </div>
-                        <div class="col-sm-9">
-                           <input type="radio" class="btn-check" name="canBeAlone" value="less than 1 hour" id="canBeAlone1" autocomplete="off" checked />
-                           <label class="btn btn-secondary" for="canBeAlone1">less than 1 hour</label>
-                           <input type="radio" class="btn-check" name="canBeAlone" value="1 - 4 hours" id="canBeAlone2" autocomplete="off" />
-                           <label class="btn btn-secondary" for="canBeAlone2">1 - 4 hours</label>   
-                           <input type="radio" class="btn-check" name="canBeAlone" value="4 - 8 hours" id="canBeAlone3" autocomplete="off" />
-                           <label class="btn btn-secondary" for="canBeAlone3">4 - 8 hours</label>  
-                           <input type="radio" class="btn-check" name="canBeAlone" value="custom" id="canBeAlone4" autocomplete="off" />
-                           <label class="btn btn-secondary" for="canBeAlone4">custom</label>                                                  
-                        </div>
-                      </div>
-                       <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Medication</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="medication" type="text" aria-label="medication" class="form-control" />                          
-                        </div>
-                      </div>
-                       <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Other care information</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="otherCareInformation" type="text" aria-label="otherCareInformation" class="form-control" />                          
-                        </div>
-                      </div>
-      
-                 </div>
               </div>
             </div>
-        
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFourY">
-                    <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
-                      data-mdb-target="#collapsefourY" aria-expanded="false" aria-controls="collapseFourY">
-                      <i class="fas fa-medkit fa-sm me-2 opacity-70"></i>Vet information
-                    </button>
-                  </h2>
-                  <div id="collapseFourY" class="accordion-collapse collapse" aria-labelledby="headingFourY"
-                    data-mdb-parent="#accordionExampleY">
-                      <div class="accordion-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                        <p class="mb-0">Name</p>
+          </div>
+          <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="row">
+                    <div class="accordion" id="accordionExampleY">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOneY">
+                                <button class="accordion-button" type="button" data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseOneY" aria-expanded="true" aria-controls="collapseOneY">
+                                    <i class="fas fa-dog fa-sm me-2 opacity-70"></i>Basic Information
+                                </button>
+                            </h2>
+                            <div id="collapseOneY" class="accordion-collapse collapse show" aria-labelledby="headingOneY"
+                                 data-mdb-parent="#accordionExampleY">
+                                <div class="accordion-body">
+                                 <div class="row">
+                                    <div class="col-sm-3">
+                                      <p class="mb-0">Pet owner</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="owner" type="text" aria-label="Pet name" class="form-control" />
+                                        </div>
+                                    </div>
+                                  <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="name" type="text" aria-label="Pet name" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Type of pet</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="radio" class="btn-check" name="typeOfpet" value="cat" id="option1" autocomplete="off" checked />
+                                            <label class="btn btn-secondary" for="option1">Cat</label>
+                                            <input type="radio" class="btn-check" name="typeOfpet" value="dog" id="option2" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="option2">Dog</label>
+                                            <input type="radio" class="btn-check" name="typeOfpet" value="other" id="option3" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="option3">Other</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Weight</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="weight" type="number" aria-label="weight" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Age</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="ageYears" type="number" aria-label="age" class="form-control" placeholder="Years"/>
+                                            <input name="ageMonths" type="number" aria-label="age" class="form-control" placeholder="Months"/>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Gender</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="radio" class="btn-check" name="gender" value="female" id="female" autocomplete="off" checked />
+                                            <label class="btn btn-secondary" for="female">Female</label>
+                                            <input type="radio" class="btn-check" name="gender" value="male" id="male" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="male">Male</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Breed</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="breed" type="text" aria-label="breed" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                          <input name="vetName" type="text" aria-label="vetName" class="form-control" />                          
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwoY">
+                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseTwoY" aria-expanded="false" aria-controls="collapseTwoY">
+                                    <i class="fas fa-cat fa-sm me-2 opacity-70"></i>Additional Information
+                                </button>
+                            </h2>
+                            <div id="collapseTwoY" class="accordion-collapse collapse" aria-labelledby="headingTwoY"
+                                 data-mdb-parent="#accordionExampleY">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Microchipped</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="microchipped" id="microchipped1" value="false" />
+                                                <label class="form-check-label" for="microchipped1">no</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="microchipped" id="microchipped2" value="true" />
+                                                <label class="form-check-label" for="microchipped2">yes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Spayed or neutered</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spayedOrNeutered" id="spayedOrNeutered1" value="false" />
+                                                <label class="form-check-label" for="spayedOrNeutered1">no</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spayedOrNeutered" id="spayedOrNeutered2" value="true" />
+                                                <label class="form-check-label" for="spayedOrNeutered2">yes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">House trained</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained1" value="no" />
+                                                <label class="form-check-label" for="houseTrained1">no</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained2" value="yes" />
+                                                <label class="form-check-label" for="houseTrained2">yes</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained3" value="unsure" />
+                                                <label class="form-check-label" for="houseTrained3">unsure</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="houseTrained" id="houseTrained4" value="depends" />
+                                                <label class="form-check-label" for="houseTrained4">depends</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Friendly with dogs</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="friendlyWithDogs" id="friendlyWithDogs1" value="false" />
+                                                <label class="form-check-label" for="friendlyWithDogs1">no</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="friendlyWithDogs" id="friendlyWithDogs2" value="true" />
+                                                <label class="form-check-label" for="friendlyWithDogs2">yes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Friendly with cats</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="friendlyWithCats" id="friendlyWithCats1" value="false" />
+                                                <label class="form-check-label" for="friendlyWithCats1">no</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="friendlyWithCats" id="friendlyWithCats2" value="true" />
+                                                <label class="form-check-label" for="friendlyWithCats2">yes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Tell us about your pet</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input name="pet-name" type="text" aria-label="Pet name" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>  
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Phone number</p>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThreeY">
+                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapseThreeY" aria-expanded="false" aria-controls="collapseThreeY">
+                                    <i class="fas fa-paw fa-sm me-2 opacity-70"></i>Care information
+                                </button>
+                            </h2>
+                            <div id="collapseThreeY" class="accordion-collapse collapse" aria-labelledby="headingThreeY" data-mdb-parent="#accordionExampleY">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Potty Schedule</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule1" value="every hour" />
+                                                <label class="form-check-label" for="pottyschedule1">every hour</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule2" value="every 2 hours" />
+                                                <label class="form-check-label" for="pottyschedule2">every 2 hours</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule3" value="every 4 hours" />
+                                                <label class="form-check-label" for="pottyschedule3">every 4 hours</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule4" value="every 8 hours" />
+                                                <label class="form-check-label" for="pottyschedule4">every 8 hours</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pottyschedule" id="pottyschedule5" value="custom" />
+                                                <label class="form-check-label" for="pottyschedule5">custom</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Energy level</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="radio" class="btn-check" name="energy" value="high" id="energy1" autocomplete="off" checked />
+                                            <label class="btn btn-secondary" for="energy1">high</label>
+                                            <input type="radio" class="btn-check" name="energy" value="moderate" id="energy2" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="energy2">moderate</label>
+                                            <input type="radio" class="btn-check" name="energy" value="low" id="energy3" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="energy3">low</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Feeding schedule</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="radio" class="btn-check" name="feedingSchedule" value="morning" id="feedingSchedule1" autocomplete="off" checked />
+                                            <label class="btn btn-secondary" for="feedingSchedule1">morning</label>
+                                            <input type="radio" class="btn-check" name="feedingSchedule" value="twice a day" id="feedingSchedule2" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="feedingSchedule2">twice a day</label>
+                                            <input type="radio" class="btn-check" name="feedingSchedule" value="custom" id="feedingSchedule3" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="feedingSchedule3">custom</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Can be left alone?</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="radio" class="btn-check" name="canBeAlone" value="less than 1 hour" id="canBeAlone1" autocomplete="off" checked />
+                                            <label class="btn btn-secondary" for="canBeAlone1">less than 1 hour</label>
+                                            <input type="radio" class="btn-check" name="canBeAlone" value="1 - 4 hours" id="canBeAlone2" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="canBeAlone2">1 - 4 hours</label>
+                                            <input type="radio" class="btn-check" name="canBeAlone" value="4 - 8 hours" id="canBeAlone3" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="canBeAlone3">4 - 8 hours</label>
+                                            <input type="radio" class="btn-check" name="canBeAlone" value="custom" id="canBeAlone4" autocomplete="off" />
+                                            <label class="btn btn-secondary" for="canBeAlone4">custom</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Medication</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="medication" type="text" aria-label="medication" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Other care information</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="otherCareInformation" type="text" aria-label="otherCareInformation" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                          <input name="vetNumber" type="text" aria-label="vetNumber" class="form-control" />                          
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFourY">
+                                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse"
+                                        data-mdb-target="#collapsefourY" aria-expanded="false" aria-controls="collapseFourY">
+                                    <i class="fas fa-medkit fa-sm me-2 opacity-70"></i>Vet information
+                                </button>
+                            </h2>
+                            <div id="collapseFourY" class="accordion-collapse collapse" aria-labelledby="headingFourY"
+                                 data-mdb-parent="#accordionExampleY">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetName" type="text" aria-label="vetName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Phone number</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetNumber" type="text" aria-label="vetNumber" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Address</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetStreet" type="text" aria-label="vetStreet" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">City</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetCity" type="text" aria-label="vetCity" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">State</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetState" type="text" aria-label="vetState" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Zip code</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="vetZip" type="text" aria-label="vetZip" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Additional Vet Info</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input name="additionalVetInfo" type="text" aria-label="additionalVetInfo" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-9 text-center">
+                                    <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
+                                </div>
+                            </div>
+                            <br>
                         </div>
-                      </div>  
-                        <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Address</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="vetStreet" type="text" aria-label="vetStreet" class="form-control" />                          
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">City</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="vetCity" type="text" aria-label="vetCity" class="form-control" />                          
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">State</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="vetState" type="text" aria-label="vetState" class="form-control" />                          
-                        </div>
-                      </div>               
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Zip code</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <input name="vetZip" type="text" aria-label="vetZip" class="form-control" />                          
-                        </div>
-                      </div>
-                      <hr>
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <p class="mb-0">Additional Vet Info</p>
-                          </div>
-                          <div class="col-sm-9">
-                            <input name="additionalVetInfo" type="text" aria-label="additionalVetInfo" class="form-control" />                          
-                          </div>
-                        </div>  
-                      <hr>
-                    </div> 
-                  </div>
-                  <div class="row">
-                      <div class="col-sm-9 text-center">
-                        <button type="submit" class="btn btn-outline-primary ms-1">Save Changes</button>
-                      </div>
-                    </div>  
-                    <br> 
-        </div>
-      </div>
-    </div>
-    </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </form>
   </div>
 </section>
