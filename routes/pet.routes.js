@@ -120,9 +120,10 @@ router.get("/user/:id/mypet/:petId", (req, res, next) => {
   const petId = req.params.petId
   console.log(req.params.id);
 
+
   Pet.findById(petId)
     .then((pet) => {
-      res.render("pet/pet-profile", { pet });
+      res.render("pet/pet-profile",  { id, pet });
     })
     .catch((err) => {
       console.log(err);

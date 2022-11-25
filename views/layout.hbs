@@ -16,7 +16,36 @@
   </head>
 
   <body>
+    <nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2">
+      <img
+        src="/images/logo-navbar.png"
+        height="40"
+        alt="Pawmpered Logo"
+        loading="lazy"
+        style="margin-top: -1px;"
+      />
+    </a>
+      <!-- Left links -->
 
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-outline-secondary me-3">
+          <a class="link-dark" href="auth/login">Login</a>
+        </button>
+        <button type="button" class="btn btn-outline-secondary me-3">
+          <a class="link-dark" href="auth/signup">Sign up for free</a>
+        </button>
+        <button type="button" class="btn btn-outline-secondary me-3">
+          <a class="link-dark" href="/auth/logout">Log Out</a>
+        </button>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
     {{{body}}}
 
     <script src="/js/script.js"></script>
