@@ -47,16 +47,6 @@ router.get('/user/:id/delete', isAdmin, (req, res, next) => {
 // Get user details
 router.get("/user/:id",(req, res, next) => {
     const id = req.params.id
-    
-    User.findById(id)
-    .populate('pets')
-    .then(user => {
-        res.render("user/user-profile", { user })
-    })
-    .catch(err => {
-        console.log(err)
-    })
-
 
   User.findById(id)
     .populate("pets")
