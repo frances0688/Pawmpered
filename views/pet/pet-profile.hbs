@@ -21,15 +21,15 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src={{pet.profilePicture}} alt="profile picture"
+            <img src={{pet.imgPath}} alt="profile picture"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{pet.name}}</h5>
-            <p class="text-muted mb-1">{{pet.age.years}} years and {{pet.age.months}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
+            <p class="text-muted mb-1">{{pet.ageYears}} years and {{pet.ageMonths}} months old, {{pet.gender}} {{pet.typeOfPet}}</p>
             <p class="text-muted mb-4">{{pet.breed}}</p>
             <div class="d-flex justify-content-center mb-2">
               <form action="/me/edit" method="post">
                 <div>test</div>
-                <button type="button" class="btn btn-primary"><a href="/me/edit">Edit Profile</a></button>
+                <button type="button" class="btn btn-primary"><a href="/user/:id/mypet/:petId">View Profile</a></button>
               </form>
               <button type="button" class="btn btn-outline-primary ms-1"><a href="/mypet/add">Add Pet</a></button>
             </div>
@@ -152,7 +152,7 @@
                 <p class="mb-0">Vet info</p>
               </div>            
             <div class="col-sm-9">
-                <p class="text-muted mb-0">{{pet.vetInfo}}</p>
+                <p class="text-muted mb-0">{{pet.vetName}}</p>
               </div>
             </div> 
             <hr>

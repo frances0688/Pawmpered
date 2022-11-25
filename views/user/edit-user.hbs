@@ -12,7 +12,7 @@
       </div>
     </div> --}}
 
-<form action="/user/{{user._id}}/edit" method="POST" enctype='multipart/form-data'>
+<form action="/user/{{user._id}}/edit" method="POST">
     <div class="row">
       <div class="col-lg-4">
         <div class="card mb-4">
@@ -20,8 +20,8 @@
             <img src={{user.imgPath}} alt="profile picture"class="rounded-circle img-fluid" style="width: 150px;">
                 <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
                 
-                <label for="formFileSm" class="form-label">Update Profile Picture</label>
-                <input type="file" class="form-control form-control-sm" id="formFileSm" name="imgPath" />
+                {{!-- <label for="formFileSm" class="form-label">Update Profile Picture</label>
+                <input type="file" class="form-control form-control-sm" id="formFileSm" name="imgPath" /> --}}
             {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
           </div>

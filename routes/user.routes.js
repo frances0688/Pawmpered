@@ -17,11 +17,11 @@ const isAdmin = require("../middleware/isAdmin")
 
 // Get list of users
 router.get("/user/:id/dashboard", isAdmin, (req, res, next) => {
+    const id = req.params._id;
+    const users = User.find().populate("pets");
+    const pets = Pet.find();
 
-    const users = User.find().populate("pets")
-    const pets = Pet.find()
-
-    res.render("user/user-list", { users, pets })
+    res.render("user/user-list", users)
     
 })
 
