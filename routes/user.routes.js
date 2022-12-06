@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 // <!--Cloudinary-->
-const fileUploader = require("../config/cloudinary");
+const { uploader, cloudinary } = require("../config/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const mongoose = require("mongoose");
 
@@ -63,7 +64,6 @@ router.get("/user/:id",(req, res, next) => {
 router.get("/user/:id/edit", (req, res, next) => {
     const id = req.params.id
 
-
   User.findById(id)
     .populate("pets")
     .then((user) => {
@@ -76,9 +76,10 @@ router.get("/user/:id/edit", (req, res, next) => {
 });
 
 
-router.post("/user/:id/edit", (req, res, next) => {
+router.post("/user/:id/edit", uploader.single("user-picture"), (req, res, next) => {
     const id = req.params.id
-    const { name, lastName, imgPath, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
+    const imgPath = req.file.path;
+    const { name, lastName, phone, dob, addressStreet, addressCity, addressState, addressZip, emergencyContactName, emergencyContactPhone } = req.body
     console.log("req.body:", req.body)
     const user = {
         name,

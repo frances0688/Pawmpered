@@ -1,137 +1,139 @@
 <section style="background-color: #eee;">
-  <div class="row">
-      {{!-- <div class="col">
-        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-        <nav class="bg-light rounded-3 p-3 mb-4">
-          <button type="button" class="btn-outline-primary ms-1"><a href="/auth/logout">Log Out</a></button>
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-          </ol>
-        </nav>
-      </div> --}}
-    </div>
+    <div class="container py-5">
+        <div class="row">
+        {{!-- <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <nav class="bg-light rounded-3 p-3 mb-4">
+            <button type="button" class="btn-outline-primary ms-1"><a href="/auth/logout">Log Out</a></button>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+            </nav>
+        </div> --}}
+        </div>
 
-<form action="/user/{{user._id}}/edit" method="POST">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img src={{user.imgPath}} alt="profile picture"class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
-                
-                {{!-- <label for="formFileSm" class="form-label">Update Profile Picture</label>
-                <input type="file" class="form-control form-control-sm" id="formFileSm" name="imgPath" /> --}}
-            {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <h5>My Pets</h5>
-              </li>
-                {{#each user.pets}}
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                        <img src={{imgPath}} alt="pet picture"class="rounded-circle img-fluid" style="width: 75px;">
-                        <h5 class="mb-0">{{name}}</h5>
-                        <div class="d-flex pt-1">
-                            <button type="button" class="btn btn-outline-secondary me-3"><a class="link-dark" href="">Edit</a></button>
-                            <!-- Checked switch -->
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked />
-                                <label class="form-check-label" for="flexSwitchCheckChecked">Deactivate</label>
-                            </div>
-                        </div>      
-                    </li>
-                {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">First and last name</p>
+        <form action="/user/{{user._id}}/edit" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src={{user.imgPath}} alt="profile picture"class="rounded-circle img-fluid" id="upload_widget" style="width: 150px">
+                                <h5 class="my-3">{{user.name}} {{user.lastName}}</h5>
+                                
+                                <label for="formFileSm" class="form-label">Update Profile Picture</label>
+                                <input type="file" class="form-control form-control-sm" id="formFileSm" name="user-picture" />
+                            {{!-- <p class="text-muted mb-1">Full Stack Developer</p>
+                            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> --}}
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <div class="input-group">
-                            <input name="name" value="{{user.name}}" type="text" aria-label="First name" class="form-control" />
-                            <input name="lastName" value="{{user.lastName}}"type="text" aria-label="Last name" class="form-control" />
+                    <div class="card mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <h5>My Pets</h5>
+                                </li>
+                                {{#each user.pets}}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <img src={{imgPath}} alt="pet picture"class="rounded-circle img-fluid" style="width: 75px;">
+                                        <h5 class="mb-0">{{name}}</h5>
+                                        <div class="d-flex pt-1">
+                                            <button type="button" class="btn btn-outline-secondary me-3"><a class="link-dark" href="">Edit</a></button>
+                                            <!-- Checked switch -->
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked />
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Deactivate</label>
+                                            </div>
+                                        </div>      
+                                    </li>
+                                {{/each}}
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Date of Birth</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input name="dob" value="{{user.dob}}" type="date" aria-label="Date of Birth" class="form-control" />
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Mobile Number</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <input name="phone" value="{{user.phone}}" type="tel" aria-label="Phone number" class="form-control" />
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Emergency Contact</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label class="form-label" for="form3Example2">Full Name</label>
-                                <input name="emergencyContactName" value="{{user.emergencyContactName}}" placeholder="Emergency Contact Name" type="text" id="form3Example2" class="form-control"/>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">First and last name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input name="name" value="{{user.name}}" type="text" aria-label="First name" class="form-control" />
+                                        <input name="lastName" value="{{user.lastName}}"type="text" aria-label="Last name" class="form-control" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <label class="form-label" for="form3Example1">Phone Number</label>
-                                <input name="emergencyContactPhone" value="{{user.emergencyContactPhone}}" placeholder="Emergency Contact Phone" type="tel" id="form3Example1" class="form-control"/>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Date of Birth</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="dob" value="{{user.dob}}" type="date" aria-label="Date of Birth" class="form-control" />
+                                </div>
                             </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Mobile Number</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input name="phone" value="{{user.phone}}" type="tel" aria-label="Phone number" class="form-control" />
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Emergency Contact</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="form3Example2">Full Name</label>
+                                            <input name="emergencyContactName" value="{{user.emergencyContactName}}" placeholder="Emergency Contact Name" type="text" id="form3Example2" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label" for="form3Example1">Phone Number</label>
+                                            <input name="emergencyContactPhone" value="{{user.emergencyContactPhone}}" placeholder="Emergency Contact Phone" type="tel" id="form3Example1" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="form-outline mb-4">
+                                        <input name="addressStreet" value="{{user.addressStreet}}" placeholder="Street" type="text" id="form3Example8" class="form-control"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <input name="addressCity" value="{{user.addressCity}}" placeholder="City" type="text" id="form3Example9" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <input name="addressState" value="{{user.addressState}}" placeholder="State" type="text" id="form3Example7" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input name="addressZip" value="{{user.addressZip}}" placeholder="Zip Code"  type="number" id="form3Example3" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                        </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="submit" class="btn btn-outline-secondary me-3">Save Changes</button>
+                            <button type="button" class="btn btn-outline-secondary me-3"><a href="/user/{{user._id}}">Cancel</a></button>
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="mb-0">Address</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="form-outline mb-4">
-                            <input name="addressStreet" value="{{user.addressStreet}}" placeholder="Street" type="text" id="form3Example8" class="form-control"/>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <input name="addressCity" value="{{user.addressCity}}" placeholder="City" type="text" id="form3Example9" class="form-control"/>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <input name="addressState" value="{{user.addressState}}" placeholder="State" type="text" id="form3Example7" class="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <input name="addressZip" value="{{user.addressZip}}" placeholder="Zip Code"  type="number" id="form3Example3" class="form-control"/>
-                        </div>
-                    </div>
-                </div>
-                
-                <hr>
             </div>
-            <div class="d-flex justify-content-center mb-2">
-                <button type="submit" class="btn btn-outline-secondary me-3">Save Changes</button>
-                <button type="submit" class="btn btn-outline-secondary me-3"><a href="/user/{{user._id}}">Cancel</a></button>
-            </div>
-        </div>
-      </div>
+        </form>
     </div>
-</form>
 </section>

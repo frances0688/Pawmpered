@@ -131,20 +131,20 @@ router.get("/user/:id/mypet/:petId", (req, res, next) => {
 });
 
 
-router.get("/user/:id/mypet/delete", (req, res, next) => {
-  id = req.params.id
+// router.get("/user/:id/mypet/delete", (req, res, next) => {
+//   id = req.params.id
   
-  Pet.findByIdAndDelete(req.params.id)
-    .then((deletedPet) => {
-      if (deletedPet.imgPath) {
-        // delete the image on cloudinary
-        cloudinary.uploader.destroy(deletedPet.publicId);
-      }
-      res.redirect("/user/${id}");
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+//   Pet.findByIdAndDelete(req.params.id)
+//     .then((deletedPet) => {
+//       if (deletedPet.imgPath) {
+//         // delete the image on cloudinary
+//         cloudinary.uploader.destroy(deletedPet.publicId);
+//       }
+//       res.redirect("/user/${id}");
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
 module.exports = router;
