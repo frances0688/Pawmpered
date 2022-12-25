@@ -114,12 +114,10 @@ router.post("/user/:id/mypet/add", uploader.single("pet-picture"), (req, res, ne
   }
 );
 
-
 router.get("/user/:id/mypet/:petId", (req, res, next) => {
   const id = req.params.id;
   const petId = req.params.petId
   console.log(req.params.id);
-
 
   Pet.findById(petId)
     .then((pet) => {
